@@ -1,5 +1,6 @@
-- Get new releases (album)
-- Featured playlists
-- Recommendation
-- List of categories
-- Featured charts (using playlists with fixed id)
+- Categories
+- Audio player
+- Artist
+  - Albums
+  - Top tracks
+  - Related artists

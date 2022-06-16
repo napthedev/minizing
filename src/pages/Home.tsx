@@ -22,12 +22,14 @@ const Home: FC = () => {
         handler={(id: string) => {
           console.log(id);
         }}
-        data={data.recommendations.tracks.map((track) => ({
-          id: track.id,
-          image: (track as any)?.album?.images?.[0]?.url,
-          title: track.name,
-          description: track?.artists.map((artist) => artist.name).join(", "),
-        }))}
+        data={data.recommendations.tracks
+          .filter((track) => track.name)
+          .map((track) => ({
+            id: track.id,
+            image: (track as any)?.album?.images?.[0]?.url,
+            title: track.name,
+            description: track?.artists.map((artist) => artist.name).join(", "),
+          }))}
       />
 
       <h1 className="mt-5 mb-3 text-2xl">New Releases</h1>
@@ -35,14 +37,16 @@ const Home: FC = () => {
       <DataGrid
         type="link"
         handler={(id: string) => `/album/${id}`}
-        data={data.newReleases.albums.items.map((album) => ({
-          id: album.id,
-          image: album.images[0].url,
-          title: album.name,
-          description: (album as any)?.artists
-            ?.map((artist: any) => artist?.name)
-            ?.join(", "),
-        }))}
+        data={data.newReleases.albums.items
+          .filter((album) => album.name)
+          .map((album) => ({
+            id: album.id,
+            image: album.images[0].url,
+            title: album.name,
+            description: (album as any)?.artists
+              ?.map((artist: any) => artist?.name)
+              ?.join(", "),
+          }))}
       />
 
       <h1 className="mt-10 mb-3 text-2xl">Top Playlists</h1>
@@ -50,12 +54,14 @@ const Home: FC = () => {
       <DataGrid
         type="link"
         handler={(id: string) => `/playlist/${id}`}
-        data={data.topPlaylists.map((playlist) => ({
-          id: playlist.id,
-          image: playlist.images[0].url,
-          title: playlist.name,
-          description: playlist?.owner?.display_name,
-        }))}
+        data={data.topPlaylists
+          .filter((playlist) => playlist.name)
+          .map((playlist) => ({
+            id: playlist.id,
+            image: playlist.images[0].url,
+            title: playlist.name,
+            description: playlist?.owner?.display_name,
+          }))}
       />
 
       <h1 className="mt-10 mb-3 text-2xl">Featured Playlists</h1>
@@ -63,12 +69,14 @@ const Home: FC = () => {
       <DataGrid
         type="link"
         handler={(id: string) => `/playlist/${id}`}
-        data={data.featuredPlaylists.playlists.items.map((playlist) => ({
-          id: playlist.id,
-          image: playlist.images[0].url,
-          title: playlist.name,
-          description: playlist?.owner?.display_name,
-        }))}
+        data={data.featuredPlaylists.playlists.items
+          .filter((playlist) => playlist.name)
+          .map((playlist) => ({
+            id: playlist.id,
+            image: playlist.images[0].url,
+            title: playlist.name,
+            description: playlist?.owner?.display_name,
+          }))}
       />
     </div>
   );
