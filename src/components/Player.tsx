@@ -103,7 +103,7 @@ const Player: FC = () => {
                 src={data.album.images[0].url}
                 alt=""
               />
-              <div>
+              <div className="hidden md:block">
                 <h1 className="line-clamp-1">{data.name}</h1>
                 <p className="text-gray-400 line-clamp-1">
                   {data.artists.map((artist) => artist.name).join(", ")}
@@ -157,7 +157,7 @@ const Player: FC = () => {
             </a>
           </div>
           <div
-            className={`flex justify-center items-center gap-4 text-sm w-full ${
+            className={`hidden md:flex justify-center items-center gap-4 text-sm w-full ${
               isLoading || isError ? "pointer-events-none" : ""
             }`}
           >
@@ -196,14 +196,16 @@ const Player: FC = () => {
                   <MdVolumeUp className="fill-white w-5 h-5" />
                 )}
               </button>
-              <Slider
-                className="w-[100px]"
-                width={isMuted ? 0 : volume * 100}
-                setWidth={(val: number) => {
-                  setVolume(val / 100);
-                  setIsMuted(false);
-                }}
-              />
+              <div className="hidden md:block">
+                <Slider
+                  className="w-[100px]"
+                  width={isMuted ? 0 : volume * 100}
+                  setWidth={(val: number) => {
+                    setVolume(val / 100);
+                    setIsMuted(false);
+                  }}
+                />
+              </div>
             </>
           )}
         </div>

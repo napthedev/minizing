@@ -24,18 +24,22 @@ const Artist: FC = () => {
 
   return (
     <div className="mx-[5vw] mb-5">
-      <div className="flex mt-8 gap-10">
+      <div className="flex flex-col md:flex-row items-center mt-8 gap-10">
         <img
           className="w-[250px] h-[250px] rounded-full"
           src={data.artist.images[0].url}
           alt=""
         />
-        <div className="flex flex-col justify-center items-start gap-3">
-          <h1 className="text-5xl font-semibold">{data.artist.name}</h1>
-          <p className="text-xl">
+        <div className="flex flex-col justify-center md:items-start gap-3">
+          <h1 className="text-4xl md:text-5xl text-center md:text-left font-semibold">
+            {data.artist.name}
+          </h1>
+          <p className="text-xl text-center md:text-left">
             {formatNumber(data.artist.followers.total)} followers
           </p>
-          <p className="text-xl">Popularity: {data.artist.popularity} / 100</p>
+          <p className="text-xl text-center md:text-left">
+            Popularity: {data.artist.popularity} / 100
+          </p>
         </div>
       </div>
 

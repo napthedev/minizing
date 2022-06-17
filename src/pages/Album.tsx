@@ -39,7 +39,7 @@ const Album: FC = () => {
         </div>
       </div>
 
-      <div className="flex-grow">
+      <div className="flex-grow w-full md:w-auto">
         {data.tracks.items.map((track) => (
           <button
             key={track.id}

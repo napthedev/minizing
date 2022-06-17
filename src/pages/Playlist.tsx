@@ -34,7 +34,7 @@ const Playlist: FC = () => {
         </div>
       </div>
 
-      <div className="flex-grow">
+      <div className="flex-grow w-full md:w-auto">
         {data.tracks.items
           .filter((track) => track.track)
           .map(({ track }, index) => (
