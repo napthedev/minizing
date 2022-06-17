@@ -15,7 +15,7 @@ const Category: FC = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <div className="mx-[5vw]">
+    <div className="mx-[5vw] mb-5">
       <h1 className="mt-5 mb-3 text-2xl">Category: {data.category.name}</h1>
 
       <DataGrid

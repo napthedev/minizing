@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Album from "./pages/Album";
@@ -8,6 +8,7 @@ import Navbar from "./components/NavBar";
 import Player from "./components/Player";
 import { PlayerContext } from "./context/PlayerContext";
 import Playlist from "./pages/Playlist";
+import Search from "./pages/Search";
 import client from "./shared/spotify-client";
 
 enum LoadingStates {
@@ -26,6 +27,12 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("minizing-playing", playerId);
   }, [playerId]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   useEffect(() => {
     fetch("https://accounts.spotify.com/api/token", {
@@ -62,12 +69,13 @@ export default function App() {
     <PlayerContext.Provider value={{ id: playerId, setId: setPlayerId }}>
       <Navbar />
 
-      <div className="min-h-screen">
+      <div className="min-h-[calc(100vh-144px)]">
         <Routes>
           <Route index element={<Home />}></Route>
           <Route path="album/:id" element={<Album />}></Route>
           <Route path="playlist/:id" element={<Playlist />}></Route>
           <Route path="category/:id" element={<Category />}></Route>
+          <Route path="search" element={<Search />}></Route>
         </Routes>
       </div>
 

@@ -1,5 +1,5 @@
-- Search
 - Artist
   - Albums
   - Top tracks
   - Related artists
+- Complete loading, error screen

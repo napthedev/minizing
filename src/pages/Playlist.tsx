@@ -1,10 +1,14 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
+
+import { PlayerContext } from "../context/PlayerContext";
 import { formatDuration } from "../shared/utils";
 import { getPlaylistInfo } from "../services/playlist";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 
 const Playlist: FC = () => {
+  const { setId } = useContext(PlayerContext);
+
   const { id } = useParams();
   const { error, data } = useSWR(`playlist-${id}`, () =>
     getPlaylistInfo(id as string)
@@ -34,6 +38,7 @@ const Playlist: FC = () => {
           .map(({ track }, index) => (
             <button
               key={track.id}
+              onClick={() => setId(track.id)}
               className="w-full flex justify-between items-center p-2 text-left bg-dark hover:bg-dark-hovered transition duration-300"
             >
               <div className="flex items-center gap-5">

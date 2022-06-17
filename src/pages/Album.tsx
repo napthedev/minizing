@@ -1,11 +1,14 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 
+import { PlayerContext } from "../context/PlayerContext";
 import { formatDuration } from "../shared/utils";
 import { getAlbumInfo } from "../services/album";
 import useSWR from "swr";
 
 const Album: FC = () => {
+  const { setId } = useContext(PlayerContext);
+
   const { id } = useParams();
   const { error, data } = useSWR(`album-${id}`, () =>
     getAlbumInfo(id as string)
@@ -38,6 +41,7 @@ const Album: FC = () => {
         {data.tracks.items.map((track) => (
           <button
             key={track.id}
+            onClick={() => setId(track.id)}
             className="w-full flex justify-between items-center p-2 text-left bg-dark hover:bg-dark-hovered transition duration-300"
           >
             <div className="flex items-center gap-5">
