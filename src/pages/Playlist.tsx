@@ -15,8 +15,8 @@ const Playlist: FC = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <div className="mx-[5vw] my-10 flex items-start gap-10">
-      <div className="flex-shrink-0 sticky top-10">
+    <div className="mx-[5vw] my-10 flex flex-col md:flex-row items-start gap-10">
+      <div className="flex-shrink-0 md:sticky top-10 flex flex-col items-center w-full md:w-auto">
         <img
           className="w-[300px] h-[300px] object-cover"
           src={data.images[0].url}
@@ -29,27 +29,29 @@ const Playlist: FC = () => {
       </div>
 
       <div className="flex-grow">
-        {data.tracks.items.map(({ track }, index) => (
-          <button
-            key={track.id}
-            className="w-full flex justify-between items-center p-2 text-left bg-dark hover:bg-dark-hovered transition duration-300"
-          >
-            <div className="flex items-center gap-5">
-              <div className="text-xl text-gray-400 w-5 text-right">
-                {index + 1}
+        {data.tracks.items
+          .filter((track) => track.track)
+          .map(({ track }, index) => (
+            <button
+              key={track.id}
+              className="w-full flex justify-between items-center p-2 text-left bg-dark hover:bg-dark-hovered transition duration-300"
+            >
+              <div className="flex items-center gap-5">
+                <div className="text-xl text-gray-400 w-5 text-right">
+                  {index + 1}
+                </div>
+                <div>
+                  <h1 className="font-medium">{track.name}</h1>
+                  <p className="text-slate-400">
+                    {(track as any).artists
+                      .map((artist: any) => artist.name)
+                      .join(", ")}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h1 className="font-medium">{track.name}</h1>
-                <p className="text-slate-400">
-                  {(track as any).artists
-                    .map((artist: any) => artist.name)
-                    .join(", ")}
-                </p>
-              </div>
-            </div>
-            <div>{formatDuration(track.duration_ms)}</div>
-          </button>
-        ))}
+              <div>{formatDuration(track.duration_ms)}</div>
+            </button>
+          ))}
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
-- Categories
-- Audio player
+- Search
 - Artist
   - Albums
   - Top tracks

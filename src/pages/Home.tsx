@@ -1,9 +1,13 @@
 import DataGrid from "../components/DataGrid";
 import { FC } from "react";
+import { PlayerContext } from "../context/PlayerContext";
 import { getHomeContent } from "../services/home";
+import { useContext } from "react";
 import useSWR from "swr";
 
 const Home: FC = () => {
+  const { setId } = useContext(PlayerContext);
+
   const { data, error } = useSWR("home", () => getHomeContent(), {
     revalidateOnFocus: false,
     revalidateIfStale: false,
@@ -15,13 +19,11 @@ const Home: FC = () => {
 
   return (
     <div className="mx-[5vw] pb-6">
-      <h1 className="mt-10 mb-3 text-2xl">Recommended</h1>
+      <h1 className="mt-5 mb-3 text-2xl">Recommended</h1>
 
       <DataGrid
         type="button"
-        handler={(id: string) => {
-          console.log(id);
-        }}
+        handler={(id: string) => setId(id)}
         data={data.recommendations.tracks
           .filter((track) => track.name)
           .map((track) => ({
@@ -77,6 +79,18 @@ const Home: FC = () => {
             title: playlist.name,
             description: playlist?.owner?.display_name,
           }))}
+      />
+
+      <h1 className="mt-10 mb-3 text-2xl">Categories</h1>
+
+      <DataGrid
+        type="link"
+        handler={(id: string) => `/category/${id}`}
+        data={data.categories.categories.items.map((category) => ({
+          id: category.id,
+          image: category.icons[0].url,
+          title: category.name,
+        }))}
       />
     </div>
   );

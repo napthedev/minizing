@@ -16,8 +16,8 @@ const Album: FC = () => {
   if (!data) return <div>Loading...</div>;
 
   return (
-    <div className="mx-[5vw] my-10 flex gap-10">
-      <div className="flex-shrink-0 sticky top-10">
+    <div className="mx-[5vw] my-10 flex flex-col md:flex-row items-start gap-10">
+      <div className="flex-shrink-0 md:sticky top-10 flex flex-col items-center w-full md:w-auto">
         <img
           className="w-[300px] h-[300px] object-cover"
           src={data.images[0].url}

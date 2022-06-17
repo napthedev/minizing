@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { FaPlay } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 interface DataGridProps {
@@ -25,16 +26,7 @@ const DataGrid: FC<DataGridProps> = ({ data, type, handler }) => {
                 alt=""
               />
               <div className="h-10 w-10 border rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300">
-                <svg
-                  className="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 384 512"
-                >
-                  <path
-                    fill="#fff"
-                    d="M361 215C375.3 223.8 384 239.3 384 256C384 272.7 375.3 288.2 361 296.1L73.03 472.1C58.21 482 39.66 482.4 24.52 473.9C9.377 465.4 0 449.4 0 432V80C0 62.64 9.377 46.63 24.52 38.13C39.66 29.64 58.21 29.99 73.03 39.04L361 215z"
-                  />
-                </svg>
+                <FaPlay className="fill-white w-5 h-5" />
               </div>
             </div>
             <p className="mt-2 font-medium line-clamp-2">{item.title}</p>

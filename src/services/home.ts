@@ -10,10 +10,10 @@ export const getHomeContent = async () => {
     categories,
     topPlaylists,
   ] = await Promise.all([
-    client.getNewReleases(),
-    client.getFeaturedPlaylists(),
+    client.getNewReleases({ country: "VN" }),
+    client.getFeaturedPlaylists({ country: "VN" }),
     client.getRecommendations({ seed_artists: SEED_ARTISTS }),
-    client.getCategories(),
+    client.getCategories({ country: "VN" }),
     Promise.all(
       TOP_PLAYLISTS.map((playlist) =>
         client.getPlaylist(playlist, { fields: "id,name,images,uri" })
