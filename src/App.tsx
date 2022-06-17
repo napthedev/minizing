@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Album from "./pages/Album";
+import Artist from "./pages/Artist";
 import Category from "./pages/Category";
 import Home from "./pages/Home";
 import Navbar from "./components/NavBar";
@@ -9,6 +10,7 @@ import Player from "./components/Player";
 import { PlayerContext } from "./context/PlayerContext";
 import Playlist from "./pages/Playlist";
 import Search from "./pages/Search";
+import SpinStretch from "react-cssfx-loading/lib/SpinStretch";
 import client from "./shared/spotify-client";
 
 enum LoadingStates {
@@ -60,7 +62,12 @@ export default function App() {
       });
   }, []);
 
-  if (loadingState === LoadingStates.loading) return <></>;
+  if (loadingState === LoadingStates.loading)
+    return (
+      <div className="w-screen h-screen flex justify-center items-center">
+        <SpinStretch />
+      </div>
+    );
 
   if (loadingState === LoadingStates.error)
     return <div>Something went wrong</div>;
@@ -71,11 +78,12 @@ export default function App() {
 
       <div className="min-h-[calc(100vh-144px)]">
         <Routes>
-          <Route index element={<Home />}></Route>
-          <Route path="album/:id" element={<Album />}></Route>
-          <Route path="playlist/:id" element={<Playlist />}></Route>
-          <Route path="category/:id" element={<Category />}></Route>
-          <Route path="search" element={<Search />}></Route>
+          <Route index element={<Home />} />
+          <Route path="album/:id" element={<Album />} />
+          <Route path="playlist/:id" element={<Playlist />} />
+          <Route path="category/:id" element={<Category />} />
+          <Route path="artist/:id" element={<Artist />} />
+          <Route path="search" element={<Search />} />
         </Routes>
       </div>
 

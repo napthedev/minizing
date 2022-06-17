@@ -38,22 +38,24 @@ const DataGrid: FC<DataGridProps> = ({ data, type, handler }) => {
 
         if (type === "link")
           return (
-            <Link
-              className="transition duration-300 bg-dark hover:bg-dark-hovered p-2 rounded-md relative group"
-              to={handler(item.id)}
-              key={item.id}
-            >
-              {children}
-            </Link>
+            <div key={item.id}>
+              <Link
+                className="w-full block transition duration-300 bg-dark hover:bg-dark-hovered p-2 rounded-md relative group"
+                to={handler(item.id)}
+              >
+                {children}
+              </Link>
+            </div>
           );
 
         return (
-          <div
-            onClick={() => handler(item.id)}
-            key={item.id}
-            className="transition duration-300 bg-dark hover:bg-dark-hovered p-2 rounded-md relative group cursor-pointer"
-          >
-            {children}
+          <div key={item.id}>
+            <div
+              onClick={() => handler(item.id)}
+              className="w-full transition duration-300 bg-dark hover:bg-dark-hovered p-2 rounded-md relative group cursor-pointer"
+            >
+              {children}
+            </div>
           </div>
         );
       })}

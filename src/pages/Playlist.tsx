@@ -1,5 +1,7 @@
 import { FC, useContext } from "react";
 
+import Error from "../components/Error";
+import Loader from "../components/Loader";
 import { PlayerContext } from "../context/PlayerContext";
 import { formatDuration } from "../shared/utils";
 import { getPlaylistInfo } from "../services/playlist";
@@ -14,9 +16,9 @@ const Playlist: FC = () => {
     getPlaylistInfo(id as string)
   );
 
-  if (error) return <div>Error</div>;
+  if (error) return <Error />;
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Loader />;
 
   return (
     <div className="mx-[5vw] my-10 flex flex-col md:flex-row items-start gap-10">

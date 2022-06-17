@@ -1,6 +1,8 @@
 import { FC, useContext, useMemo } from "react";
 
 import DataGrid from "../components/DataGrid";
+import Error from "../components/Error";
+import Loader from "../components/Loader";
 import { PlayerContext } from "../context/PlayerContext";
 import { formatNumber } from "../shared/utils";
 import { searchByKeywords } from "../services/search";
@@ -18,9 +20,9 @@ const Search: FC = () => {
 
   const { data, error } = useSWR(`search-${q}`, () => searchByKeywords(q));
 
-  if (error) return <div>Error</div>;
+  if (error) return <Error />;
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Loader />;
 
   return (
     <div className="mx-[5vw] mb-5">

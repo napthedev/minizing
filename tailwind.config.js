@@ -16,6 +16,14 @@ module.exports = {
             opacity: 0,
           },
         },
+        "fade-in": {
+          from: {
+            opacity: 0,
+          },
+          to: {
+            opacity: 1,
+          },
+        },
       },
     },
   },

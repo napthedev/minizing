@@ -1,8 +1,10 @@
 import client from "../shared/spotify-client";
 
 export const getCategoryInfo = async (id: string) => {
-  const playlists = await client.getCategoryPlaylists(id);
-  const category = await client.getCategory(id);
+  const [playlists, category] = await Promise.all([
+    client.getCategoryPlaylists(id),
+    client.getCategory(id),
+  ]);
 
   return {
     category,

@@ -1,5 +1,7 @@
 import DataGrid from "../components/DataGrid";
+import Error from "../components/Error";
 import { FC } from "react";
+import Loader from "../components/Loader";
 import { getCategoryInfo } from "../services/category";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
@@ -10,9 +12,9 @@ const Category: FC = () => {
     getCategoryInfo(id as string)
   );
 
-  if (error) return <div>Error</div>;
+  if (error) return <Error />;
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Loader />;
 
   return (
     <div className="mx-[5vw] mb-5">
