@@ -38,7 +38,7 @@ const Search: FC = () => {
             .filter((artist) => artist.name)
             .map((artist) => ({
               id: artist.id,
-              image: artist.images[0].url,
+              image: artist?.images?.[0]?.url,
               title: artist.name,
               description: `${formatNumber(artist.followers.total)} followers`,
             })) as any
@@ -74,7 +74,7 @@ const Search: FC = () => {
             .filter((album) => album.name)
             .map((album) => ({
               id: album.id,
-              image: album.images[0].url,
+              image: album?.images?.[0]?.url,
               title: album.name,
               description: (album as any)?.artists
                 ?.map((artist: any) => artist?.name)
@@ -93,7 +93,7 @@ const Search: FC = () => {
             .filter((playlist) => playlist.name)
             .map((playlist) => ({
               id: playlist.id,
-              image: playlist.images[0].url,
+              image: playlist?.images[0]?.url,
               title: playlist.name,
               description: playlist?.owner?.display_name,
             })) as any

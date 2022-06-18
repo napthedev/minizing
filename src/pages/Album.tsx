@@ -25,7 +25,7 @@ const Album: FC = () => {
       <div className="flex-shrink-0 md:sticky top-10 flex flex-col items-center w-full md:w-auto">
         <img
           className="w-[300px] h-[300px] object-cover"
-          src={data.images[0].url}
+          src={data.images?.[0]?.url}
           alt=""
         />
         <h1 className="text-center text-2xl font-semibold my-3">{data.name}</h1>

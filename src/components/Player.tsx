@@ -101,7 +101,7 @@ const Player: FC = () => {
             <>
               <img
                 className="w-14 h-14 object-cover"
-                src={data.album.images[0].url}
+                src={data.album?.images?.[0]?.url}
                 alt=""
               />
               <div className="hidden md:block">

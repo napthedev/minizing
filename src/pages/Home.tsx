@@ -45,7 +45,7 @@ const Home: FC = () => {
           .filter((album) => album.name)
           .map((album) => ({
             id: album.id,
-            image: album.images[0].url,
+            image: album.images?.[0]?.url,
             title: album.name,
             description: (album as any)?.artists
               ?.map((artist: any) => artist?.name)
@@ -62,7 +62,7 @@ const Home: FC = () => {
           .filter((playlist) => playlist.name)
           .map((playlist) => ({
             id: playlist.id,
-            image: playlist.images[0].url,
+            image: playlist.images?.[0]?.url,
             title: playlist.name,
             description: playlist?.owner?.display_name,
           }))}
@@ -77,7 +77,7 @@ const Home: FC = () => {
           .filter((playlist) => playlist.name)
           .map((playlist) => ({
             id: playlist.id,
-            image: playlist.images[0].url,
+            image: playlist.images?.[0]?.url,
             title: playlist.name,
             description: playlist?.owner?.display_name,
           }))}
@@ -90,7 +90,7 @@ const Home: FC = () => {
         handler={(id: string) => `/category/${id}`}
         data={data.categories.categories.items.map((category) => ({
           id: category.id,
-          image: category.icons[0].url,
+          image: category.icons?.[0]?.url,
           title: category.name,
         }))}
       />

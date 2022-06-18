@@ -27,7 +27,7 @@ const Category: FC = () => {
           .filter((playlist) => playlist.name)
           .map((playlist) => ({
             id: playlist.id,
-            image: playlist.images[0].url,
+            image: playlist.images?.[0]?.url,
             title: playlist.name,
             description: playlist?.owner?.display_name,
           }))}
