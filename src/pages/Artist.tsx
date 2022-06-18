@@ -27,7 +27,7 @@ const Artist: FC = () => {
       <div className="flex flex-col md:flex-row items-center mt-8 gap-10">
         <img
           className="w-[250px] h-[250px] rounded-full"
-          src={data.artist.images[0].url}
+          src={data.artist?.images?.[0]?.url}
           alt=""
         />
         <div className="flex flex-col justify-center md:items-start gap-3">
@@ -67,7 +67,7 @@ const Artist: FC = () => {
           .filter((album) => album.name)
           .map((album) => ({
             id: album.id,
-            image: album.images[0].url,
+            image: album.images?.[0]?.url,
             title: album.name,
             description: (album as any)?.artists
               ?.map((artist: any) => artist?.name)
@@ -85,7 +85,7 @@ const Artist: FC = () => {
             .filter((artist) => artist.name)
             .map((artist) => ({
               id: artist.id,
-              image: artist.images[0].url,
+              image: artist.images?.[0]?.url,
               title: artist.name,
               description: `${formatNumber(artist.followers.total)} followers`,
             })) as any

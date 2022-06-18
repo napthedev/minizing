@@ -1,8 +1,9 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, Fragment, useEffect, useRef, useState } from "react";
 import { MdRepeat, MdVolumeOff, MdVolumeUp } from "react-icons/md";
 
 import { FaPlay } from "react-icons/fa";
 import { IoMdPause } from "react-icons/io";
+import { Link } from "react-router-dom";
 import { PlayerContext } from "../context/PlayerContext";
 import { RiExternalLinkLine } from "react-icons/ri";
 import Slider from "./Slider";
@@ -106,7 +107,12 @@ const Player: FC = () => {
               <div className="hidden md:block">
                 <h1 className="line-clamp-1">{data.name}</h1>
                 <p className="text-gray-400 line-clamp-1">
-                  {data.artists.map((artist) => artist.name).join(", ")}
+                  {data.artists.map((artist, index) => (
+                    <Fragment key={artist.id}>
+                      {index !== 0 && <span>, </span>}
+                      <Link to={`/artist/${artist.id}`}>{artist.name}</Link>
+                    </Fragment>
+                  ))}
                 </p>
               </div>
             </>
