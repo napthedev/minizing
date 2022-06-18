@@ -46,9 +46,9 @@ VITE_CLIENT_SECRET=spotify-client-secret
 
 ## Previews
 
-![Preview 1](https://res.cloudinary.com/naptest/image/upload/v1644039987/fireverse/preview-1_yujhpl.png)
-![Preview 2](https://res.cloudinary.com/naptest/image/upload/v1644039987/fireverse/preview-2_qlxjjf.png)
-![Preview 3](https://res.cloudinary.com/naptest/image/upload/v1644039986/fireverse/preview-3_tgqahb.png)
+![Preview 1](https://res.cloudinary.com/naptest/image/upload/v1655557651/minizing/preview-1_enclfy.png)
+![Preview 2](https://res.cloudinary.com/naptest/image/upload/v1655557650/minizing/preview-2_ngvihs.png)
+![Preview 3](https://res.cloudinary.com/naptest/image/upload/v1655557651/minizing/preview-3_beeqj2.png)
 
 ## Summary
 
