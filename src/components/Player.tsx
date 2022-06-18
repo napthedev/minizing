@@ -121,6 +121,7 @@ const Player: FC = () => {
         <div className="flex-1 flex flex-col justify-center items-center">
           <div className="flex justify-center items-center gap-5">
             <button
+              data-tooltips={isLoop ? "Disable repeat" : "Enable repeat"}
               onClick={() => setIsLoop(!isLoop)}
               disabled={isLoading || isError}
             >
@@ -129,6 +130,15 @@ const Player: FC = () => {
               />
             </button>
             <button
+              data-tooltips={
+                isError
+                  ? "Error"
+                  : isLoading
+                  ? "Loading"
+                  : isPaused
+                  ? "Play"
+                  : "Pause"
+              }
               disabled={isLoading || isError}
               className={`h-8 w-8 border rounded-full flex justify-center items-center ${
                 isError ? "border-red-500" : ""
@@ -137,19 +147,16 @@ const Player: FC = () => {
             >
               {isError ? (
                 <span className="text-red-500">{`!`}</span>
+              ) : isLoading ? (
+                <Spinner />
+              ) : isPaused ? (
+                <FaPlay className="fill-white w-3 h-3" />
               ) : (
-                <>
-                  {isLoading ? (
-                    <Spinner />
-                  ) : isPaused ? (
-                    <FaPlay className="fill-white w-3 h-3" />
-                  ) : (
-                    <IoMdPause className="fill-white w-3 h-3" />
-                  )}
-                </>
+                <IoMdPause className="fill-white w-3 h-3" />
               )}
             </button>
             <a
+              data-tooltips="Open in Spotify"
               href={data?.external_urls.spotify}
               target="_blank"
               rel="noopener noreferrer"
@@ -189,6 +196,7 @@ const Player: FC = () => {
           {!isLoading && !isError && (
             <>
               <button
+                data-tooltips={isMuted || volume === 0 ? "Unmute" : "Mute"}
                 onClick={() => {
                   if (volume === 0) {
                     setIsMuted(false);
