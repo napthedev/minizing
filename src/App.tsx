@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import Album from "./pages/Album";
 import Artist from "./pages/Artist";
@@ -25,9 +25,14 @@ export default function App() {
   const [playerId, setPlayerId] = useState(
     localStorage.getItem("minizing-playing") || ""
   );
+  const [isPlayerIdChanged, setIsPlayerIdChanged] = useState(false);
+  const isPlayerIdFirstMount = useRef(true);
 
   useEffect(() => {
     localStorage.setItem("minizing-playing", playerId);
+
+    if (isPlayerIdFirstMount.current) isPlayerIdFirstMount.current = false;
+    else setIsPlayerIdChanged(true);
   }, [playerId]);
 
   const location = useLocation();
@@ -73,7 +78,9 @@ export default function App() {
     return <div>Something went wrong</div>;
 
   return (
-    <PlayerContext.Provider value={{ id: playerId, setId: setPlayerId }}>
+    <PlayerContext.Provider
+      value={{ id: playerId, setId: setPlayerId, isChanged: isPlayerIdChanged }}
+    >
       <Navbar />
 
       <div className="min-h-[calc(100vh-144px)]">

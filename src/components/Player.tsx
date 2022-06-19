@@ -14,7 +14,7 @@ import { useContext } from "react";
 import useSWR from "swr";
 
 const Player: FC = () => {
-  const { id } = useContext(PlayerContext);
+  const { id, isChanged } = useContext(PlayerContext);
 
   const { data, error } = useSWR(`track-${id}`, () => getTrackInfo(id));
 
@@ -92,7 +92,7 @@ const Player: FC = () => {
         className="hidden"
         hidden
         src={data?.preview_url}
-        autoPlay
+        autoPlay={isChanged}
         loop={isLoop}
       ></audio>
       <div className="sticky bottom-0 left-0 right-0 h-20 flex items-center bg-dark border-t-2 border-gray-800 px-[5vw]">
