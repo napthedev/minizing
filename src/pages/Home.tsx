@@ -8,7 +8,7 @@ import { useContext } from "react";
 import useSWR from "swr";
 
 const Home: FC = () => {
-  const { setId } = useContext(PlayerContext);
+  const { setId, setIsChanged } = useContext(PlayerContext);
 
   const { data, error } = useSWR("home", () => getHomeContent(), {
     revalidateOnFocus: false,
@@ -25,7 +25,10 @@ const Home: FC = () => {
 
       <DataGrid
         type="button"
-        handler={(id: string) => setId(id)}
+        handler={(id: string) => {
+          setId(id);
+          setIsChanged(true);
+        }}
         data={data.recommendations.tracks
           .filter((track) => track.name)
           .map((track) => ({

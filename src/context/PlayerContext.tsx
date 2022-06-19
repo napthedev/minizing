@@ -1,7 +1,13 @@
 import { createContext } from "react";
 
-export const PlayerContext = createContext<{ id: string; setId: Function , isChanged: boolean}>({
+export const PlayerContext = createContext<{
+  id: string;
+  setId: Function;
+  isChanged: boolean;
+  setIsChanged: Function;
+}>({
   id: "",
   setId: () => {},
-  isChanged: false
+  isChanged: false,
+  setIsChanged: () => {},
 });

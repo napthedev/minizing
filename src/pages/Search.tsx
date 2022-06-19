@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import useSWR from "swr";
 
 const Search: FC = () => {
-  const { setId } = useContext(PlayerContext);
+  const { setId, setIsChanged } = useContext(PlayerContext);
 
   const location = useLocation();
   const { q } = useMemo(
@@ -49,7 +49,10 @@ const Search: FC = () => {
 
       <DataGrid
         type="button"
-        handler={(id: string) => setId(id)}
+        handler={(id: string) => {
+          setId(id);
+          setIsChanged(true);
+        }}
         data={
           data.tracks?.items
             ?.filter((track) => track.name)

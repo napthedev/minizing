@@ -21,7 +21,7 @@ const Player: FC = () => {
   const isLoading = !data;
   const isError = data && (error || !data.preview_url);
 
-  const [isPaused, setIsPaused] = useState(false);
+  const [isPaused, setIsPaused] = useState(!isChanged);
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -92,8 +92,8 @@ const Player: FC = () => {
         className="hidden"
         hidden
         src={data?.preview_url}
-        autoPlay={isChanged}
         loop={isLoop}
+        autoPlay={false}
       ></audio>
       <div className="sticky bottom-0 left-0 right-0 h-20 flex items-center bg-dark border-t-2 border-gray-800 px-[5vw]">
         <div className="flex-1 flex justify-start gap-3 items-center">
