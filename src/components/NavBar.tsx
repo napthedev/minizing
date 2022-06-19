@@ -69,6 +69,8 @@ const Navbar: FC = () => {
       >
         <input
           value={inputValue}
+          onKeyDown={(e) => e.stopPropagation()}
+          onKeyUp={(e) => e.stopPropagation()}
           onChange={(e) => setInputValue(e.target.value)}
           type="text"
           className="bg-dark border border-gray-600 outline-none rounded-full py-2 px-3 w-full md:w-60"
