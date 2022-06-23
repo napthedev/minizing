@@ -1,4 +1,4 @@
-import { FC, ReactNode, createContext, useState } from "react";
+import { FC, createContext, useState } from "react";
 
 export const PlayerContext = createContext<{
   playerId: string;
@@ -12,13 +12,13 @@ export const PlayerContext = createContext<{
   setIsPlayerIdChanged: () => {},
 });
 
-export const PlayerContextProvider: FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const PlayerContextProvider: FC<{ children: any }> = ({ children }) => {
   const [playerId, setPlayerId] = useState(
     localStorage.getItem("minizing-playing") || ""
   );
   const [isPlayerIdChanged, setIsPlayerIdChanged] = useState(false);
+
+  console.log(playerId);
 
   return (
     <PlayerContext.Provider

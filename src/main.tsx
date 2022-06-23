@@ -1,10 +1,14 @@
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import ReactDOM from "react-dom/client";
 import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-)
+import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { PlayerContextProvider } from "./context/PlayerContext";
+import ReactDOM from "react-dom/client";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <PlayerContextProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </PlayerContextProvider>
+);
