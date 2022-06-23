@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Album from "./pages/Album";
 import Artist from "./pages/Artist";
@@ -22,10 +22,7 @@ enum LoadingStates {
 export default function App() {
   const [loadingState, setLoadingState] = useState(LoadingStates.loading);
 
-  const [playerId, setPlayerId] = useState(
-    localStorage.getItem("minizing-playing") || ""
-  );
-  const [isPlayerIdChanged, setIsPlayerIdChanged] = useState(false);
+  const { playerId } = useContext(PlayerContext);
 
   useEffect(() => {
     localStorage.setItem("minizing-playing", playerId);
@@ -74,14 +71,7 @@ export default function App() {
     return <div>Something went wrong</div>;
 
   return (
-    <PlayerContext.Provider
-      value={{
-        id: playerId,
-        setId: setPlayerId,
-        isChanged: isPlayerIdChanged,
-        setIsChanged: setIsPlayerIdChanged,
-      }}
-    >
+    <>
       <Navbar />
 
       <div className="min-h-[calc(100vh-144px)]">
@@ -96,6 +86,6 @@ export default function App() {
       </div>
 
       {!!playerId && <Player key={playerId} />}
-    </PlayerContext.Provider>
+    </>
   );
 }

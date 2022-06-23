@@ -9,7 +9,7 @@ import { getAlbumInfo } from "../services/album";
 import useSWR from "swr";
 
 const Album: FC = () => {
-  const { setId, setIsChanged } = useContext(PlayerContext);
+  const { setPlayerId, setIsPlayerIdChanged } = useContext(PlayerContext);
 
   const { id } = useParams();
   const { error, data } = useSWR(`album-${id}`, () =>
@@ -44,8 +44,8 @@ const Album: FC = () => {
           <button
             key={track.id}
             onClick={() => {
-              setId(track.id);
-              setIsChanged(true);
+              setPlayerId(track.id);
+              setIsPlayerIdChanged(true);
             }}
             className="w-full flex justify-between items-center p-2 text-left bg-dark hover:bg-dark-hovered transition duration-300"
           >

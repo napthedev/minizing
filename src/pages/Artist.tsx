@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import useSWR from "swr";
 
 const Artist: FC = () => {
-  const { setId, setIsChanged } = useContext(PlayerContext);
+  const { setPlayerId, setIsPlayerIdChanged } = useContext(PlayerContext);
 
   const { id } = useParams();
 
@@ -48,8 +48,8 @@ const Artist: FC = () => {
       <DataGrid
         type="button"
         handler={(id: string) => {
-          setId(id);
-          setIsChanged(true);
+          setPlayerId(id);
+          setIsPlayerIdChanged(true);
         }}
         data={data.topTracks.tracks
           .filter((track) => track.name)

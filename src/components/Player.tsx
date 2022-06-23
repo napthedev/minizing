@@ -14,14 +14,16 @@ import { useContext } from "react";
 import useSWR from "swr";
 
 const Player: FC = () => {
-  const { id, isChanged } = useContext(PlayerContext);
+  const { playerId, setIsPlayerIdChanged } = useContext(PlayerContext);
 
-  const { data, error } = useSWR(`track-${id}`, () => getTrackInfo(id));
+  const { data, error } = useSWR(`track-${playerId}`, () =>
+    getTrackInfo(playerId)
+  );
 
   const isLoading = !data;
   const isError = data && (error || !data.preview_url);
 
-  const [isPaused, setIsPaused] = useState(!isChanged);
+  const [isPaused, setIsPaused] = useState(!setIsPlayerIdChanged);
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);

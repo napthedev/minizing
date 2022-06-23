@@ -9,7 +9,7 @@ import { useParams } from "react-router-dom";
 import useSWR from "swr";
 
 const Playlist: FC = () => {
-  const { setId, setIsChanged } = useContext(PlayerContext);
+  const { setPlayerId, setIsPlayerIdChanged } = useContext(PlayerContext);
 
   const { id } = useParams();
   const { error, data } = useSWR(`playlist-${id}`, () =>
@@ -41,8 +41,8 @@ const Playlist: FC = () => {
             <button
               key={track.id}
               onClick={() => {
-                setId(track.id);
-                setIsChanged(true);
+                setPlayerId(track.id);
+                setIsPlayerIdChanged(true);
               }}
               className="w-full flex justify-between items-center p-2 text-left bg-dark hover:bg-dark-hovered transition duration-300"
             >
